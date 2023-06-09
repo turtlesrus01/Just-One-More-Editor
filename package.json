@@ -4,11 +4,11 @@
   "description": "This is a text editor packaged as a progressive web application!",
   "main": "server.js",
   "scripts": {
-    "start:dev": "concurrently \"npm run server\" \"npm run client\"",
-    "start": "node server.js",
+    "start:dev": "concurrently \"cd server && npm run server\" \"cd client && npm run client\"",
+    "start": "npm run build && cd server && node server.js",
     "server": "cd server && nodemon server.js",
     "build": "cd client && npm run build ",
-    "install": "cd client && npm install",
+    "install": "cd server && npm i && cd ../client && npm i",
     "client": "cd client && npm start"
   },
   "keywords": [],
