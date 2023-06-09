@@ -8,7 +8,7 @@ const { InjectManifest, GenerateSW } = require("workbox-webpack-plugin");
 
 module.exports = () => {
   return {
-    mode: "development",
+    mode: "production",
     entry: {
       main: "./src/js/index.js",
       install: "./src/js/install.js",
@@ -23,9 +23,25 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: "./index.html",
-        title: "Webpack Plugin",
+        title: "Text Editor",
       }),
       new GenerateSW(),
+      new WebpackPwaManifest({
+        name: 'Text Editor',
+        short_name: 'JOME',
+        description: 'This is a text editor packaged as a progressive web application!',
+        background_color: '#463f57',
+        theme_color: '#463f57',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
     ],
     module: {
       rules: [
